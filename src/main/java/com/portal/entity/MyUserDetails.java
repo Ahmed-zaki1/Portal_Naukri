@@ -1,4 +1,4 @@
-package com.entity;
+package com.portal.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,12 +19,10 @@ public class MyUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<Role> roles = user.getRoles();
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-         
-        for (Role role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
-         
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();         
+       roles.forEach(role->{
+    	   authorities.add(new SimpleGrantedAuthority(role.getName()));
+       });  
         return authorities;
     }
  

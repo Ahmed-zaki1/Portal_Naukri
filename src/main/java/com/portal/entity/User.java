@@ -1,4 +1,4 @@
-package com.entity;
+package com.portal.entity;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package com;
+package com.portal;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -8,9 +8,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.entiry.*"})
-@EntityScan(basePackages = {"com.entity.*"})
-@EnableJpaRepositories(basePackages = {"com.repository.*"})
 public class PortalApplication {
 
 	public static void main(String[] args) {

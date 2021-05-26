@@ -1,5 +1,6 @@
-package com.security;
+package com.portal.security;
 
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,10 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.service.UserDetailsServiceImpl;
+import com.portal.service.UserDetailsServiceImpl;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	static Logger log = Logger.getLogger(SecurityConfig.class.getName());
+
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return new UserDetailsServiceImpl();
@@ -28,18 +32,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 		authProvider.setUserDetailsService(userDetailsService());
 		authProvider.setPasswordEncoder(passwordEncoder());
-
+		log.info("working till here");
 		return authProvider;
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.authenticationProvider(authenticationProvider());
+		log.info("working here also");
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/").hasAnyAuthority("ADMIN").antMatchers("/new").hasAnyAuthority("USER")
+		log.info("working in role method");
+		http.authorizeRequests().antMatchers("/hello").hasAnyAuthority("ADMIN").antMatchers("/demo")
+				.hasAnyAuthority("USER")
+
 				/*
 				 * .antMatchers("/edit/**").hasAnyAuthority("ADMIN", "EDITOR")
 				 * .antMatchers("/delete/**").hasAuthority("ADMIN")
