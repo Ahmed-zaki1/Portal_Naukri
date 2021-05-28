@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		log.info("working in role method");
-		http.authorizeRequests().antMatchers("/hello").hasAnyAuthority("ADMIN").antMatchers("/demo")
+		http.authorizeRequests().antMatchers("/admin").hasAnyAuthority("ADMIN").antMatchers("/user")
 				.hasAnyAuthority("USER")
 
 				/*

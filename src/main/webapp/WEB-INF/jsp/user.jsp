@@ -9,7 +9,7 @@
 <body>
 
 <form action="user" method="post">
-user
+<td>user</td>
 </form>
 </body>
 </html>
